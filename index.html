@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Аналіз текстів</title>
+  <script defer src="script.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 text-gray-900 font-sans">
+  <div class="max-w-2xl mx-auto mt-10 p-6 bg-white shadow-lg rounded-lg">
+    <h1 class="text-2xl font-bold text-center mb-6">Аналіз файлів</h1>
+    
+    <button id="startBtn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full mb-6">
+      Почати аналіз
+    </button>
+    
+    <div id="results" class="space-y-4">
+      <div class="p-4 bg-gray-50 rounded shadow">
+        <h2 class="font-semibold">Async аналіз</h2>
+        <p id="asyncTime">Час: —</p>
+        <p id="asyncPercent">Співпадіння: —</p>
+      </div>
+      <div class="p-4 bg-gray-50 rounded shadow">
+        <h2 class="font-semibold">Sync аналіз</h2>
+        <p id="syncTime">Час: —</p>
+        <p id="syncPercent">Співпадіння: —</p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
