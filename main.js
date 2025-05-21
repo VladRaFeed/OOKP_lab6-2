@@ -1,8 +1,9 @@
 import fs from 'fs'
 
 async function syncReadFilesAndCheck() {
-    const data1 = await fs.promises.readFile('./src/test.txt', 'utf8')
-    const data2 = await fs.promises.readFile('./src/test2.txt', 'utf8')
+    const time0 = performance.now()
+    const data1 = await fs.promises.readFile('./test.txt', 'utf8')
+    const data2 = await fs.promises.readFile('./test2.txt', 'utf8')
 
     const splitData1 = data1.split(' ')
     const splitData2 = data2.split(' ')
@@ -20,18 +21,16 @@ async function syncReadFilesAndCheck() {
         }
     }
 
-    console.log("1: ", splitData1.length)
-    console.log("2: ", splitData2.length)
-    console.log("max size: ", size)
-    console.log("percent1: ", percent1)
-    console.log("percent2: ", percent2)
+    const time1 = performance.now()
+    console.log("sync time: ", time1 - time0)
     console.log("true percent: ", ((truePercent / size) * 100))
 }
 
 async function asyncReadFilesAndCheck() {
+    const time0 = performance.now()
     const [data1, data2] = await Promise.all([
-        fs.promises.readFile('./src/test.txt', 'utf8'),
-        fs.promises.readFile('./src/test2.txt', 'utf8')
+        fs.promises.readFile('./test.txt', 'utf8'),
+        fs.promises.readFile('./test2.txt', 'utf8')
     ])
 
     const splitData1 = data1.split(' ')
@@ -50,13 +49,11 @@ async function asyncReadFilesAndCheck() {
         }
     
     }
-    console.log("1: ", splitData1.length)
-    console.log("2: ", splitData2.length)
-    console.log("max size: ", size)
-    console.log("percent1: ", percent1)
-    console.log("percent2: ", percent2)
+
+    const time1 = performance.now()
+    console.log("async time: ", time1 - time0)
     console.log("true percent: ", ((truePercent / size) * 100))
 }
 
-// syncReadFilesAndCheck()
+syncReadFilesAndCheck()
 asyncReadFilesAndCheck()
